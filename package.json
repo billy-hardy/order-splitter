@@ -1,0 +1,21 @@
+{
+  "name": "order-splitter",
+  "version": "0.2.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "idb": "^1.3.2",
+    "require": "^2.4.20"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoFernandes/order-splitter.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GustavoFernandes/order-splitter/issues"
+  },
+  "homepage": "https://github.com/GustavoFernandes/order-splitter#readme"
+}

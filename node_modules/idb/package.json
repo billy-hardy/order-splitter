@@ -1,0 +1,69 @@
+{
+  "name": "idb",
+  "version": "1.3.2",
+  "description": "IndexedDB but with promises",
+  "main": "lib/idb.js",
+  "typings": "lib/idb.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "gulp serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jakearchibald/indexeddb-promised.git"
+  },
+  "author": {
+    "name": "Jake Archibald"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "babelify": "^6.1.3",
+    "browser-sync": "^2.8.2",
+    "browserify": "^11.0.1",
+    "del": "^1.2.0",
+    "es6-promise": "^3.0.2",
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-size": "^1.2.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-util": "^3.0.6",
+    "merge-stream": "^0.1.8",
+    "mocha": "^2.2.5",
+    "run-sequence": "^1.1.2",
+    "uglifyify": "^3.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.3.1"
+  },
+  "gitHead": "c71eb76877e404f18d2668c4ce8689849f143775",
+  "bugs": {
+    "url": "https://github.com/jakearchibald/indexeddb-promised/issues"
+  },
+  "homepage": "https://github.com/jakearchibald/indexeddb-promised#readme",
+  "_id": "idb@1.3.2",
+  "_shasum": "8670e9289f09c785b00bac3597bb812fb10f1eab",
+  "_from": "idb@*",
+  "_npmVersion": "3.10.3",
+  "_nodeVersion": "6.7.0",
+  "_npmUser": {
+    "name": "jaffathecake",
+    "email": "jaffathecake@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "jaffathecake",
+      "email": "jaffathecake@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "8670e9289f09c785b00bac3597bb812fb10f1eab",
+    "tarball": "https://registry.npmjs.org/idb/-/idb-1.3.2.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/idb-1.3.2.tgz_1480671888954_0.16851961822248995"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/idb/-/idb-1.3.2.tgz",
+  "readme": "ERROR: No README data found!"
+}
