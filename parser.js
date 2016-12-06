@@ -1,11 +1,8 @@
 self.addEventListener('message', function(e) {
 	let order = e.data;
-	let arr = split(order);
+	let parsedOrder = split(order);
 
-	let map = arr[0];
-	let totalMap = arr[1];
-
-	self.postMessage({map, totalMap});
+	self.postMessage(parsedOrder);
 });
 
 function split({input, taxes, fees, tipPercent}) {
@@ -55,5 +52,6 @@ function split({input, taxes, fees, tipPercent}) {
 	for (var x in map) {
 		map[x] = map[x] + map[x] * taxPercent + feesPerPerson + map[x] * tipPercent / 100;
 	}
-	return [map, totalMap];
+    let personTotalMap = map;
+	return {personTotalMap, totalMap};
 }

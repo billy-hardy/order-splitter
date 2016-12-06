@@ -1,13 +1,27 @@
 var worker = new Worker('parser.js');
+let persistWorker = new Worker('persist.js');
 
 worker.addEventListener('message', function(e) {
-	let map = e.data.map;
+	let map = e.data.personTotalMap;
 	let totalMap = e.data.totalMap;
+
+    persistWorker.postMessage({cmd:'save', order:e.data});
 
 	document.getElementById('result').innerHTML = 
 		makePrettyTableFromObject(totalMap) +
 		'<hr>' +
 		'<pre>' + makePrettyTableFromObject(map) + '</pre>';
+});
+
+function showOrders() {
+    persistWorker.postMessage('get');
+}
+
+persistWorker.addEventListener('message', function(e) {
+    let orders = e.data;
+    Promise.all(orders).then(function(orders) {
+        console.log(orders);
+    });
 });
 
 function split() {

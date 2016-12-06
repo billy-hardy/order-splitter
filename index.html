@@ -3,7 +3,8 @@
 		<title>Order Splitter</title>
 		<meta charset="UTF-8">
 		<script src="main.js"></script>
-		<script src="install.js"></script>
+        <!--<script src="install.js"></script>-->
+		<script src="node_modules/idb-keyval/idb-keyval.js"></script>
 	</head>
 	<body>
 		<div align="right">v0.2</div>
@@ -35,6 +36,7 @@
 		Fees: $<input id="fees" type="text"><br>
 		Tip percentage: <input id="tip" type="text">%<br>
 		<button onclick="split()">Split</button>
-		<p id="result">
+        <p id="result"></p>
+        <button onclick="showOrders()">History</button>
 	</body>
 </html>
