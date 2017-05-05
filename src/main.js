@@ -1,5 +1,9 @@
 window.onload = init;
 
+import {Order} from './order.js';
+import {parseQueryStringInput} from './parsers.js';
+import {parseOrderUpInput} from './parsers.js';
+
 function init () {
   document.getElementById("split").addEventListener("click", onSplitButtonClick);
   document.getElementById("percentageCheckbox").addEventListener("click", onPercentageCheckboxClick);

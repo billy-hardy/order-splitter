@@ -1,3 +1,4 @@
+import {Order} from "./order.js";
 /**
  * Parses input from a URL query string into an Order.
  * @example
@@ -5,7 +6,7 @@
  * @param {string} queryString - The URL query string
  * @returns {Order} An order parsed from the URL query string
  */
-function parseQueryStringInput (queryString) {
+export function parseQueryStringInput (queryString) {
     var pairs = queryString.split('&');
     let order = new Order();
 
@@ -40,7 +41,7 @@ function parseQueryStringInput (queryString) {
  * @param {boolean} isTipPercentage - True if the tip is a percentage as opposed to a fixed value
  * @return {Order} An order parsed from the OrderUp.com confirmation summary
  */
-function parseOrderUpInput (orderUpText, fee, tax, tip, isTipPercentage) {
+export function parseOrderUpInput (orderUpText, fee, tax, tip, isTipPercentage) {
     // TODO: check if the number at the beginning of the line affects the item cost
     // example: 2 Chicken $4.00
     //   should the cost for the person be $4 or $8?

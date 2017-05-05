@@ -1,4 +1,4 @@
-class Order {
+export class Order {
     constructor() {
         this.people = new Map();
         this.tip = 0;
