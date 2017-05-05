@@ -23,18 +23,31 @@ var injectVersion = require('gulp-inject-version');
 var jshint = require('gulp-jshint');
 var minifyCss = require('gulp-clean-css');
 var minifyHtml = require('gulp-minify-html');
+var rename = require("gulp-rename");
+var rollup = require('gulp-rollup');
 var uglify = require('gulp-uglify');
 var vulcanize = require('gulp-vulcanize');
 
 gulp.task('default', ['vulcanize', 'copy-files']);
 
-gulp.task('copy-files', ['clean'], function() {
+gulp.task('bundle', function() {
+  gulp.src('./src/**/*.js')
+    // transform the files here.
+    .pipe(rollup({
+      // any option supported by Rollup can be set here.
+      entry: './src/main.js'
+    }))
+    .pipe(rename("all.js"))
+    .pipe(gulp.dest('./src'));
+});
+
+gulp.task('copy-files', ['clean', 'bundle'], function() {
   return gulp.src([...dontVulcanizeTheseFiles, ...copyTheseFilesToDist], {base: './src'})
     .pipe(debug('copied files'))
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('vulcanize', ['clean'], function() {
+gulp.task('vulcanize', ['clean', 'bundle'], function() {
 
   var jsFilter = filter(['**/*.js'], {restore: true});
   var htmlFilter = filter(['**/*.html'], {restore: true});
