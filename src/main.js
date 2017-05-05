@@ -49,12 +49,13 @@ function updateTipComponents (isTipPercentage) {
 function onSplitButtonClick () {
   var text = document.getElementById('textarea').value;
   var tax = Number(document.getElementById('taxes').value);
-  var fee = Number(document.getElementById('fees').value);
+  var nontaxableFees = Number(document.getElementById('nontaxableFees').value);
+  var taxableFees = Number(document.getElementById('taxableFees').value);
   var tip = Number(document.getElementById('tip').value);
   var isTipPercentage = document.getElementById('percentageCheckbox').checked;
 
   handleOrder(function () {
-    return parseOrderUpInput(text, fee, tax, tip, isTipPercentage);
+    return parseOrderUpInput(text, taxableFees, nontaxableFees, tax, tip, isTipPercentage);
   });
 }
 

@@ -34,19 +34,21 @@ function parseQueryStringInput (queryString) {
 /**
  * Parses the confirmation summary from an OrderUp.com order
  * @param {string} orderUpText - The confirmation summary from OrderUp.com
- * @param {number} fee
+ * @param {number} taxableFees
+ * @param {number} nontaxableFees
  * @param {number} tax
  * @param {number} tip - The tip (either a fixed value or percentage)
  * @param {boolean} isTipPercentage - True if the tip is a percentage as opposed to a fixed value
  * @return {Order} An order parsed from the OrderUp.com confirmation summary
  */
-function parseOrderUpInput (orderUpText, fee, tax, tip, isTipPercentage) {
+function parseOrderUpInput (orderUpText, taxableFees, nontaxableFees, tax, tip, isTipPercentage) {
     // TODO: check if the number at the beginning of the line affects the item cost
     // example: 2 Chicken $4.00
     //   should the cost for the person be $4 or $8?
 
     let order = new Order()
-        .withNonTaxedFees(fee)
+        .withTaxedFees(taxableFees)
+        .withNonTaxedFees(nontaxableFees)
         .withTax(tax)
         .withTip(tip, isTipPercentage);
     var label = 'Label for:';

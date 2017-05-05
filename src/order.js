@@ -75,7 +75,7 @@ class Order {
     }
 
     get total() {
-        return this.subTotal + this.fee + this.tipDollars + this.tax;
+        return this.subTotal + this.tipDollars + this.tax;
     }
 
     split() {
