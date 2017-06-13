@@ -68,9 +68,11 @@ class OrderUpParser {
         lines.reduce((lastItemCost, line) => {
             let itemCostMatch, nameMatch;
 
-            if (itemCostMatch = line.match('.*\\$([0-9.]+)')) {
-                let itemCost = Number(itemCostMatch[1]);
-                return itemCost;
+            if(!lastItemCost) {
+                if (itemCostMatch = line.match('.*\\$([0-9.]+)')) {
+                    let itemCost = Number(itemCostMatch[1]);
+                    return itemCost;
+                }
             }
 
             if (nameMatch = line.match('.*Label for:(.*)')) {
@@ -92,9 +94,9 @@ class CsvParser {
 
         const lines = csv.split('\n');
         for(const line of lines) {
-            if(line.trim() !== "") {
+            if(line.trim() !== '') {
                 const [name, ...priceStrings] = line.split(',');
-                const price = priceStrings.map(ps => Number(ps.trim().replace('$',''))).reduce((p,acc) => p+acc);
+                const price = priceStrings.map(ps => Number(ps.trim().replace('$',''))).reduce((p,acc) => p+acc, 0);
                 if(name === 'fee') {
                     order.withNonTaxedFees(price);
                 }
@@ -175,6 +177,9 @@ class Order {
     }
 
     get taxPercent() {
+        if(this.subTotal === 0) {
+            return 0;
+        }
         return this.tax/this.subTotal;
     }
 
@@ -189,6 +194,9 @@ class Order {
     get tipPercent() {
         if(this.isTipPercentage) {
             return this._tipPercentage;
+        }
+        if(this.subTotal === 0) {
+            return 0;
         }
         return this._tipDollars / this.subTotal;
     }
@@ -15940,7 +15948,7 @@ defineCustomElement('order-split-results-table', class extends Polymer.Element {
 
         });
 // this is to help with debugging any SW caching issues if they appear
-            var scriptSha = 'e58aad4';
+            var scriptSha = '14be965';
             var htmlSha = document.querySelector('#sha').innerText;
             console.debug(`script version: ${scriptSha}`);
             console.debug(`html version:   ${htmlSha}`);
