@@ -267,6 +267,14 @@ class Order {
     }
 };
 (function() {
+    console.debug('service worker is disabled for now.');
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+            console.log('uninstalling old service worker');
+            registration.unregister();
+        } 
+    });
+    return; // no service worker until we iron bugs out of caching
     let queryParams = new Map(location.search.slice(1).split('&').map(t=>t.split('=')));
     if (location.hostname === 'localhost' && queryParams.get('sw') !== 'test') {
         console.log('service worker disabled on localhost');
@@ -15509,11 +15517,6 @@ defineCustomElement('order-input', class extends Polymer.Element {
                 }
                 this.$.location.query = query;
             }
-            _requestOrder() {
-                // this method makes no sense to me.
-                // can we delete it?
-                window.postMessage('parseDom', '*');
-            }
             _onCheckboxTap() {
                 localStorage.setItem('usePercentForTip', JSON.stringify(!this.usePercentForTip));
             }
@@ -16302,7 +16305,7 @@ defineCustomElement('order-split-results-table', class extends Polymer.Element {
 
         });
 // this is to help with debugging any SW caching issues if they appear
-            var scriptSha = '6eb3523';
+            var scriptSha = '4829ad8';
             var htmlSha = document.querySelector('#sha').innerText;
             console.debug(`script version: ${scriptSha}`);
             console.debug(`html version:   ${htmlSha}`);
