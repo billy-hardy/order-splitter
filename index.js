@@ -68,11 +68,9 @@ class OrderUpParser {
         lines.reduce((lastItemCost, line) => {
             let itemCostMatch, nameMatch;
 
-            if(!lastItemCost) {
-                if (itemCostMatch = line.match('.*\\$([0-9.]+)')) {
-                    let itemCost = Number(itemCostMatch[1]);
-                    return itemCost;
-                }
+            if (itemCostMatch = line.match('.*\\$([0-9.]+)')) {
+                let itemCost = Number(itemCostMatch[1]);
+                return itemCost;
             }
 
             if (nameMatch = line.match('.*Label for:(.*)')) {
@@ -251,14 +249,6 @@ class Order {
     }
 };
 (function() {
-    console.debug('service worker is disabled for now.');
-    navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for(let registration of registrations) {
-            console.log('uninstalling old service worker');
-            registration.unregister();
-        } 
-    });
-    return; // no service worker until we iron bugs out of caching
     let queryParams = new Map(location.search.slice(1).split('&').map(t=>t.split('=')));
     if (location.hostname === 'localhost' && queryParams.get('sw') !== 'test') {
         console.log('service worker disabled on localhost');
@@ -15141,6 +15131,11 @@ defineCustomElement('order-input', class extends Polymer.Element {
                 }
                 OrderSplitResults.show(order);
             }
+            _requestOrder() {
+                // this method makes no sense to me.
+                // can we delete it?
+                window.postMessage('parseDom', '*');
+            }
             _onCheckboxTap() {
                 localStorage.setItem('usePercentForTip', JSON.stringify(!this.usePercentForTip));
             }
@@ -15945,7 +15940,7 @@ defineCustomElement('order-split-results-table', class extends Polymer.Element {
 
         });
 // this is to help with debugging any SW caching issues if they appear
-            var scriptSha = '4d5e296';
+            var scriptSha = '506dbfc';
             var htmlSha = document.querySelector('#sha').innerText;
             console.debug(`script version: ${scriptSha}`);
             console.debug(`html version:   ${htmlSha}`);
