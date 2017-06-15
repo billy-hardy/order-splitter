@@ -11,7 +11,7 @@ function loadJs(url) {
 if(!("customElements" in window)) {
     loadJs(window.location.href+"bower_components/webcomponentsjs/webcomponents-lite.js");
 };
-let Order = require('./order.js');
+//let Order = require('./order.js');
 class QueryStringParser {
     /**
      * Parses input from a URL query string into an Order.
