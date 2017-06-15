@@ -11,6 +11,7 @@ function loadJs(url) {
 if(!("customElements" in window)) {
     loadJs(window.location.href+"bower_components/webcomponentsjs/webcomponents-lite.js");
 };
+let Order = require('./order.js');
 class QueryStringParser {
     /**
      * Parses input from a URL query string into an Order.
@@ -112,6 +113,11 @@ class CsvParser {
 
         return order;
     }
+}
+module.exports = {
+    OrderUpParser,
+    QueryStringParser,
+    CsvParser
 };
 window.onload = function() {
   // check for URL query parameters
@@ -247,7 +253,8 @@ class Order {
             .withTaxedFees(json.taxedFees);
         return order.split();
     }
-};
+}
+module.exports = Order;
 (function() {
     let queryParams = new Map(location.search.slice(1).split('&').map(t=>t.split('=')));
     if (location.hostname === 'localhost' && queryParams.get('sw') !== 'test') {
